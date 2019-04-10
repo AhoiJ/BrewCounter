@@ -22,8 +22,6 @@ class SessionMode : AppCompatActivity() {
         // if previous session has not ended, open that session
         // else open "questioneer" for new session
 
-
-
     }
 
     fun checkTime():String{
