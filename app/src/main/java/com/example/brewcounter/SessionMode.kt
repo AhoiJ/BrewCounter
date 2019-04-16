@@ -14,21 +14,8 @@ class SessionMode : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_mode)
 
-        // on startup get current time and check it
-        // against the time when previous session was supposed to end
-        val currentTime:String
-        currentTime = checkTime()
-        teksti.setText(currentTime) // used to test timeGet
-        // if previous session has not ended, open that session
-        // else open "questioneer" for new session
+        // get newest session from array (not yet implemented)
 
     }
 
-    fun checkTime():String{
-        val sdf =  SimpleDateFormat("HH:mm:ss",
-            Locale.getDefault())
-        sdf.timeZone = TimeZone.getTimeZone("Etc/GMT-3")  // sets time to finnish time
-        val currentDate = sdf.format(Date())
-        return currentDate
-    }
 }
