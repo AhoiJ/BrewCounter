@@ -15,6 +15,7 @@ class SessionMode : AppCompatActivity() {
         setContentView(R.layout.activity_session_mode)
 
         // get newest session from array (not yet implemented)
+       val sessionArray: Array <sessions> = arrayOf()
 
     }
 
