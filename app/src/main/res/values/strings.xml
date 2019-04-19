@@ -12,5 +12,12 @@
     <string name="beer033">0.33L Beer</string>
     <string name="beer05">0.5L Beer</string>
 
+    <!-- Session creation stuff -->
+    <string name="new_session">Create new session</string>
+    <string name="enter_title">Title: </string>
+    <string name="enter_length">Session length </string>
+    <string name="session_length_help">Session length\n8 to 24 hours</string>
+    <string name="button_submit">Submit</string>
+
 
 </resources>
