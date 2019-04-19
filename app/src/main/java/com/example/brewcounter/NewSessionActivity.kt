@@ -1,12 +1,17 @@
 package com.example.brewcounter
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_start_session.*
+import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,8 +23,13 @@ class NewSessionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start_session)
 
         mBtnSubmit.setOnClickListener(View.OnClickListener {
-            if (setSession()) {
-                // Needs to send newSession data to Array or List, make them!
+            var newSession = setSession()
+            var check = newSession.id
+            if (check != 0) {
+
+                // saves session to sharedpreferences
+                saveSessionToArray(newSession)
+
                 val intent = Intent(this, SessionMode::class.java)
                 startActivity(intent)
             } else {
@@ -32,17 +42,70 @@ class NewSessionActivity : AppCompatActivity() {
 
     }
 
-    fun setSession(): Boolean {
+    fun setSession(): sessions {
+        // getLatestId gets latest session id to make a new one
+        var id = getNewId() // not tested 19.4
+
         val titleName = etvInputTitle.text.toString()
         val sessionLength = etvTime.text.toString().toInt() // limit session length to 8-24 hours
         if (checkTimeValidity(sessionLength) == 1) {
             var curtime = checkTime()
-            val newSession = sessions(1, titleName, sessionLength.toString(), curtime, 0, 0)
+            // needs to get last session id to update id num
+            val newSession = sessions(id, titleName, sessionLength.toString(), curtime, 0, 0)
             // Make list or array of session class to send newSession
-            return true
-        } else
-            return false
+            return newSession
+        } else {
+            var emptySession = sessions(0, "", "", "", 0, 0)
+            return emptySession
+        }
+    }
 
+    /*
+        fun getLatestId(): Int {
+            var id: Int = 0
+            var checker: Int = 1
+            var bool: Boolean = true
+            var storeLatest: Int = 0
+            val sharedPreference = getSharedPreferences("SessionData", 0)
+            var gson = Gson()
+            while (bool) {
+                var json = sharedPreference.getString(checker.toString(), null)
+                var type = object : TypeToken<ArrayList<sessions>>() {}.type
+                val sessionIdChecker: sessions
+                sessionIdChecker = gson.fromJson(json, type)
+                if (sessionIdChecker.id != null) {
+                    storeLatest = checker
+                    checker++
+                }
+            }
+            return id
+        }
+    */
+
+    // Checks what id´s are in use to get a new one
+    fun getNewId(): Int {
+        var id: Int = 1
+        var storeLatest: Int = 0
+        var bool: Boolean = true
+        val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
+        //  val ed: SharedPreferences.Editor
+        while (bool) {
+            if (sharedPreference.contains(id.toString())) {
+                storeLatest = id
+                id++
+            } else bool = false
+        }
+        storeLatest++
+        return storeLatest
+    }
+    // saves session to array for later use
+    fun saveSessionToArray(newSession: sessions) {
+        val sharedPreference = getSharedPreferences("SessionData", 0)
+        var editor = sharedPreference.edit()
+        var gson = Gson()
+        var json = gson.toJson(newSession)
+        editor.putString(newSession.id.toString(), json)
+        editor.apply()
     }
 
     fun checkTimeValidity(time: Int): Int {
@@ -63,4 +126,5 @@ class NewSessionActivity : AppCompatActivity() {
         val currentDate = sdf.format(Date())
         return currentDate
     }
+
 }
