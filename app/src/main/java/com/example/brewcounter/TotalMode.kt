@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.brewcounter.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class totalModeActivity : AppCompatActivity() {
+class TotalMode : AppCompatActivity() {
 
     // Initializing an empty ArrayList to be filled with animals
     val animals: ArrayList<String> = ArrayList()
