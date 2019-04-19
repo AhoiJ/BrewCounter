@@ -19,9 +19,11 @@ class SessionMode : AppCompatActivity() {
         setContentView(R.layout.activity_session_mode)
 
         // get newest session from array (not yet implemented)
-        var currentSession = loadSessionData()
-
-        currentSession.id
+        var currentSession = loadSessionData() // error in loadSessionData function
+        // likely because of data order after gson
+        //var correctSession = currentSession[0] // tried if works as list
+        textView.setText(currentSession.id.toString())
+        textView2.setText(currentSession.title)
 
     }
 
