@@ -1,4 +1,4 @@
-package com.example.android.rvtutorial
+package com.example.brewcounter
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +8,7 @@ import com.example.brewcounter.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class TotalMode : AppCompatActivity() {
-
+/*
     // Initializing an empty ArrayList to be filled with animals
     val animals: ArrayList<String> = ArrayList()
 
@@ -65,4 +65,5 @@ class TotalMode : AppCompatActivity() {
         animals.add("penguin")
         animals.add("parrot")
     }
+*/
 }
