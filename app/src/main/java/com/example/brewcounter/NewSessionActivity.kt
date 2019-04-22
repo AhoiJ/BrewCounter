@@ -32,6 +32,8 @@ class NewSessionActivity : AppCompatActivity() {
 
                 val intent = Intent(this, SessionMode::class.java)
                 startActivity(intent)
+                // un-ables user to use back button to return to this activity
+                finish()
             } else {
                 val toast = Toast.makeText(this, "Time must be\n8 to 24 hours!", Toast.LENGTH_LONG)
                 toast.setGravity(Gravity.TOP, 0, 200)
