@@ -65,7 +65,6 @@ class SessionMode : AppCompatActivity() {
                 id++
             } else bool = false
         }
-        storeLatest
         return storeLatest
     }
 

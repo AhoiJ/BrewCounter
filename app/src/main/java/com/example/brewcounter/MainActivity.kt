@@ -20,22 +20,45 @@ class MainActivity : AppCompatActivity() {
         btnSession.setOnClickListener {
             // on button click get current time and check it
             // against the time when previous session was supposed to end
-            val currentTime = checkTime() // implement get function from list into checkTime function
+            var currentTime = checkTime() // implement get function from list into checkTime function
 
+            // gets latestSession for time checks
             var checkSessionTime = loadSessionData()
-            var sessionLenght = checkSessionTime.sessionLength
+            if (checkSessionTime.id != 0) { // if no data found open NewSessionActivity
+                var sessionLength = checkSessionTime.sessionLength
+                var sessionStartTime = checkSessionTime.curTime
 
-         //   if (currentTime.add)
-            // if previous session has not ended, open that session
-            // else open StartSessionActivity for new session info input
+                // times changed to calendar for comparing
+                var sdf = SimpleDateFormat("MM-dd HH:mm:ss")
+                var date: Date = sdf.parse(sessionStartTime) // fault here
+                var calendar: Calendar = Calendar.getInstance()
+                calendar.setTime(date)
+                calendar.add(Calendar.HOUR, sessionLength.toInt())
 
-            // Opens NewSessionActivity
-            val intentCreate = Intent(this, NewSessionActivity::class.java)
-            startActivity(intentCreate)
+                // times changed to calendar for comparing
+                var sdfCurrent = SimpleDateFormat("MM-dd HH:mm:ss")
+                var currentDate: Date = sdfCurrent.parse(currentTime)
+                var calendarCurrent: Calendar = Calendar.getInstance()
+                calendarCurrent.setTime(currentDate)
 
-            // opens sessionMode
-            // val intent = Intent(this, SessionMode::class.java)
-            //startActivity(intent)
+                // if previous session has not ended, open that session
+                // not checked if works correctly, current test was klo:14.48 22.4, need to test 11 hours later
+                if (calendar > calendarCurrent) {
+                    // opens sessionMode
+                    val intent = Intent(this, SessionMode::class.java)
+                    startActivity(intent)
+                } else {  // else open StartSessionActivity for new session info input
+                    // Opens NewSessionActivity
+                    val intentCreate = Intent(this, NewSessionActivity::class.java)
+                    startActivity(intentCreate)
+                }
+
+            } else {
+                // Opens NewSessionActivity
+                val intentCreate = Intent(this, NewSessionActivity::class.java)
+                startActivity(intentCreate)
+
+            }
         }
 
         btnTally.setOnClickListener {
@@ -58,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     // And get sessionLength to check if session has expired
     fun checkTime(): String {
         val sdf = SimpleDateFormat(
-            "HH:mm:ss",
+            "MM-dd HH:mm:ss",
             Locale.getDefault()
         )
         sdf.timeZone = TimeZone.getTimeZone("Etc/GMT-3")  // sets time to finnish time
@@ -66,44 +89,53 @@ class MainActivity : AppCompatActivity() {
         return currentDate
     }
 
+    // loads Session data for checking if current has expired
     fun loadSessionData(): sessions {
         var id = getLatestId() // gets latest id in list
-        val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
-        var gson = Gson() // initialize gson for gson.fromJson
-        var json = sharedPreference.getString(id.toString(), null) // get data of latest session
+        if (id != 0) {
+            val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
+            var gson = Gson() // initialize gson for gson.fromJson
+            var json = sharedPreference.getString(id.toString(), null) // get data of latest session
 
-        // Maps sessions so data can be accessed
-        var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
-        // Gets data by key from map
-        var curtime = sessionMap["curTime"].toString()
-        var idAsString = sessionMap["id"].toString()
-        var largeBeerAsString = sessionMap["largeBeer"].toString()
-        var sessionLength = sessionMap["sessionLength"].toString()
-        var smallBeerAsString = sessionMap["smallBeer"].toString()
-        var title = sessionMap["title"].toString()
+            // Maps sessions so data can be accessed
+            var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
+            // Gets data by key from map
+            var curtime = sessionMap["curTime"].toString()
+            var idAsString = sessionMap["id"].toString()
+            var largeBeerAsString = sessionMap["largeBeer"].toString()
+            var sessionLength = sessionMap["sessionLength"].toString()
+            var smallBeerAsString = sessionMap["smallBeer"].toString()
+            var title = sessionMap["title"].toString()
 
-        // Make Int values be int
-        var newId = (idAsString.toDouble()).toInt()
-        var largeBeer = (largeBeerAsString.toDouble()).toInt()
-        var smallBeer = (smallBeerAsString.toDouble()).toInt()
-        // Add data to session which will be returned
-        var session = sessions(newId, title, sessionLength, curtime, smallBeer, largeBeer)
+            // Make Int values be int
+            var newId = (idAsString.toDouble()).toInt()
+            var largeBeer = (largeBeerAsString.toDouble()).toInt()
+            var smallBeer = (smallBeerAsString.toDouble()).toInt()
+            // Add data to session which will be returned
+            var session = sessions(newId, title, sessionLength, curtime, smallBeer, largeBeer)
 
-        return session // returns session for use
+            return session // returns session for use
+        } else {
+            var session = sessions(0, "", "", "", 0, 0)
+            return session
+        }
     }
 
+    // gets id of latest session
     fun getLatestId(): Int {
         var id: Int = 1
         var storeLatest: Int = 0
         var bool: Boolean = true
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
-        while (bool) {
-            if (sharedPreference.contains(id.toString())) {
-                storeLatest = id
-                id++
-            } else bool = false
-        }
-        storeLatest
-        return storeLatest
+        if (sharedPreference != null) {
+            while (bool) {
+                if (sharedPreference.contains(id.toString())) {
+                    storeLatest = id
+                    id++
+                } else bool = false
+            }
+            return storeLatest
+        } else return storeLatest
     }
 }
+

@@ -60,27 +60,6 @@ class NewSessionActivity : AppCompatActivity() {
         }
     }
 
-    /*
-        fun getLatestId(): Int {
-            var id: Int = 0
-            var checker: Int = 1
-            var bool: Boolean = true
-            var storeLatest: Int = 0
-            val sharedPreference = getSharedPreferences("SessionData", 0)
-            var gson = Gson()
-            while (bool) {
-                var json = sharedPreference.getString(checker.toString(), null)
-                var type = object : TypeToken<ArrayList<sessions>>() {}.type
-                val sessionIdChecker: sessions
-                sessionIdChecker = gson.fromJson(json, type)
-                if (sessionIdChecker.id != null) {
-                    storeLatest = checker
-                    checker++
-                }
-            }
-            return id
-        }
-    */
 
     // Checks what id´s are in use to get a new one
     fun getNewId(): Int {
@@ -119,7 +98,7 @@ class NewSessionActivity : AppCompatActivity() {
 
     fun checkTime(): String {
         val sdf = SimpleDateFormat(
-            "HH:mm:ss",
+            "MM-dd HH:mm:ss",
             Locale.getDefault()
         )
         sdf.timeZone = TimeZone.getTimeZone("Etc/GMT-3")  // sets time to finnish time
