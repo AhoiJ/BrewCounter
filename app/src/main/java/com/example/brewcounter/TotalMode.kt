@@ -31,74 +31,86 @@ class TotalMode : AppCompatActivity() {
 
         loadDrinks()
 
-        iBtnSubtractSb.setOnClickListener{
-            smallBeer--
-            tvSbAmount.setText("" + smallBeer)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+        iBtnSubtractSb.setOnClickListener {
+            if (smallBeer > 0) {
+                smallBeer--
+                tvSbAmount.setText("" + smallBeer)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
         }
 
-        iBtnAddSb.setOnClickListener{
+        iBtnAddSb.setOnClickListener {
             smallBeer++
             tvSbAmount.setText("" + smallBeer)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractLb.setOnClickListener{
-            largeBeer--
+        iBtnSubtractLb.setOnClickListener {
+            if (largeBeer > 0) {
+                largeBeer--
+                tvLbAmount.setText("" + largeBeer)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
+        }
+
+        iBtnAddLb.setOnClickListener {
+            largeBeer++
             tvLbAmount.setText("" + largeBeer)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
-        }
-
-        iBtnAddLb.setOnClickListener{
-           largeBeer++
-            tvLbAmount.setText("" + largeBeer)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
 
         }
 
-        iBtnSubtractLd.setOnClickListener{
-            longDrink--
-            tvLdAmount.setText("" + longDrink)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+        iBtnSubtractLd.setOnClickListener {
+            if (longDrink > 0) {
+                longDrink--
+                tvLdAmount.setText("" + longDrink)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
         }
 
-        iBtnAddLd.setOnClickListener{
+        iBtnAddLd.setOnClickListener {
             longDrink++
             tvLdAmount.setText("" + longDrink)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractCider.setOnClickListener{
-            cider--
-            tvCiderAmount.setText("" + cider)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+        iBtnSubtractCider.setOnClickListener {
+            if (cider > 0) {
+                cider--
+                tvCiderAmount.setText("" + cider)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
         }
 
-        iBtnAddCider.setOnClickListener{
+        iBtnAddCider.setOnClickListener {
             cider++
             tvCiderAmount.setText("" + cider)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractWG.setOnClickListener{
-            wineGlass--
-            tvWgAmount.setText("" + wineGlass)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+        iBtnSubtractWG.setOnClickListener {
+            if (wineGlass > 0) {
+                wineGlass--
+                tvWgAmount.setText("" + wineGlass)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
         }
 
-        iBtnAddWG.setOnClickListener{
+        iBtnAddWG.setOnClickListener {
             wineGlass++
             tvWgAmount.setText("" + wineGlass)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractShot.setOnClickListener{
-            shot--
-            tvShotAmount.setText("" + shot)
-            saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+        iBtnSubtractShot.setOnClickListener {
+            if (shot > 0) {
+                shot--
+                tvShotAmount.setText("" + shot)
+                saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
+            }
         }
 
-        iBtnAddShot.setOnClickListener{
+        iBtnAddShot.setOnClickListener {
             shot++
             tvShotAmount.setText("" + shot)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
@@ -106,7 +118,7 @@ class TotalMode : AppCompatActivity() {
 
     }
 
-    fun updateList(){
+    fun updateList() {
         tvSbAmount.setText("" + smallBeer)
         tvLbAmount.setText("" + largeBeer)
         tvLdAmount.setText("" + longDrink)
@@ -115,7 +127,7 @@ class TotalMode : AppCompatActivity() {
         tvShotAmount.setText("" + shot)
     }
 
-    fun loadDrinks(){
+    fun loadDrinks() {
         val sharPref = getSharedPreferences("DrinksData", Context.MODE_PRIVATE)
 
         smallBeer = sharPref.getInt("smallBeers", smallBeer)
@@ -127,7 +139,7 @@ class TotalMode : AppCompatActivity() {
         updateList()
     }
 
-    fun saveDrinks(sB: Int, lB : Int, lD : Int, C : Int, wG : Int, S : Int){
+    fun saveDrinks(sB: Int, lB: Int, lD: Int, C: Int, wG: Int, S: Int) {
         val sharPref = getSharedPreferences("DrinksData", 0)
         var editor = sharPref.edit()
 
