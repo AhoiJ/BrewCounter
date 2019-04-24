@@ -105,18 +105,28 @@ class MainActivity : AppCompatActivity() {
             var largeBeerAsString = sessionMap["largeBeer"].toString()
             var sessionLength = sessionMap["sessionLength"].toString()
             var smallBeerAsString = sessionMap["smallBeer"].toString()
+            var longDrinkAsString = sessionMap["longDrink"].toString()
+            var ciderAsString = sessionMap["cider"].toString()
+            var wineGlassAsString = sessionMap["wineGlass"].toString()
+            var shotAsString = sessionMap["shot"].toString()
             var title = sessionMap["title"].toString()
 
             // Make Int values be int
             var newId = (idAsString.toDouble()).toInt()
             var largeBeer = (largeBeerAsString.toDouble()).toInt()
             var smallBeer = (smallBeerAsString.toDouble()).toInt()
+            var longDrink = (longDrinkAsString.toDouble().toInt())
+            var cider = (ciderAsString.toDouble().toInt())
+            var wineGlass = (wineGlassAsString.toDouble().toInt())
+            var shot = (shotAsString.toDouble().toInt())
+
             // Add data to session which will be returned
-            var session = sessions(newId, title, sessionLength, curtime, smallBeer, largeBeer)
+            var session = sessions(newId, title, sessionLength, curtime, smallBeer, largeBeer,
+                longDrink, cider, wineGlass, shot)
 
             return session // returns session for use
         } else {
-            var session = sessions(0, "", "", "", 0, 0)
+            var session = sessions(0, "", "", "", 0, 0,0,0,0,0)
             return session
         }
     }

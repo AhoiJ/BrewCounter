@@ -22,10 +22,122 @@ class SessionMode : AppCompatActivity() {
         // get newest session from array
         var currentSession = loadSessionData()
 
-        // as a test to see if data is correct
-        textView.setText(currentSession.id.toString())
-        textView2.setText(currentSession.title)
+        // used to add sessionLength to sessionStart time
+        var sdf = SimpleDateFormat("MM-dd HH:mm:ss")
+        var date: Date = sdf.parse(currentSession.curTime) // fault here
+        var calendar: Calendar = Calendar.getInstance()
+        calendar.setTime(date)
+        calendar.add(Calendar.HOUR, currentSession.sessionLength.toInt())
+        var endTime = sdf.format(calendar.getTime())
 
+        // shows title, start and end times
+        tvTitle.setText("" + currentSession.title)
+        tvSessionEndTime.setText("Session end time:\n" + endTime)
+        tvSessionStartTime.setText("Session started:\n" + currentSession.curTime)
+
+        setDrinks(currentSession)
+
+        iBtnAddSbSes.setOnClickListener {
+            currentSession.smallBeer++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractSbSes.setOnClickListener {
+            // subtract small beer
+            currentSession.smallBeer--
+            setDrinks(currentSession)
+        }
+        iBtnAddLbSes.setOnClickListener {
+            // add large beer
+            currentSession.largeBeer++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractLbSes.setOnClickListener {
+            // subtract large beer
+            currentSession.largeBeer--
+            setDrinks(currentSession)
+        }
+        iBtnAddLdSes.setOnClickListener {
+            // add LongDrink
+            currentSession.longDrink++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractLdSes.setOnClickListener {
+            // subtract LongDrink
+            currentSession.longDrink--
+            setDrinks(currentSession)
+        }
+        iBtnAddCiderSes.setOnClickListener {
+            // add cider
+            currentSession.cider++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractCiderSes.setOnClickListener {
+            // subtract cider
+            currentSession.cider--
+            setDrinks(currentSession)
+        }
+        iBtnAddWGSes.setOnClickListener {
+            // add wineGlass
+            currentSession.wineGlass++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractWGSes.setOnClickListener {
+            // subtract wineGlass
+            currentSession.wineGlass--
+            setDrinks(currentSession)
+        }
+        iBtnAddShotSes.setOnClickListener {
+            // add shot
+            currentSession.shot++
+            setDrinks(currentSession)
+        }
+        iBtnSubtractShotSes.setOnClickListener {
+            // subtract shot
+            currentSession.wineGlass--
+            setDrinks(currentSession)
+        }
+
+    }
+
+    fun setDrinks(session: sessions) {
+
+        tvSbAmountSes.setText("" + session.smallBeer)
+        tvLbAmountSes.setText("" + session.largeBeer)
+        tvLdAmountSes.setText("" + session.longDrink)
+        tvCiderAmountSes.setText("" + session.cider)
+        tvWgAmountSes.setText("" + session.wineGlass)
+        tvShotAmountSes.setText("" + session.shot)
+
+        saveSession(session)
+        saveSessionToTotal(session)
+    }
+
+    fun saveSession(session: sessions) {
+
+        val sharedPreference = getSharedPreferences("SessionData", 0)
+        var editor = sharedPreference.edit()
+        var gson = Gson()
+        var json = gson.toJson(session)
+        editor.putString(session.id.toString(), json)
+        editor.apply()
+
+    }
+
+    fun saveSessionToTotal(session: sessions) {
+
+        val sharPref = getSharedPreferences("DrinksData", 0)
+        var editor = sharPref.edit()
+
+        // make this be an addition not a replacement
+        /*
+        editor.putInt("smallBeers", session.smallBeer)
+        editor.putInt("largeBeers", session.largeBeer)
+        editor.putInt("longDrinks", session.longDrink)
+        editor.putInt("ciders", session.cider)
+        editor.putInt("wineGlasses", session.wineGlass)
+        editor.putInt("shots", session.shot)
+        editor.apply()
+        */
     }
 
     fun loadSessionData(): sessions {
@@ -43,14 +155,26 @@ class SessionMode : AppCompatActivity() {
         var largeBeerAsString = sessionMap["largeBeer"].toString()
         var sessionLength = sessionMap["sessionLength"].toString()
         var smallBeerAsString = sessionMap["smallBeer"].toString()
+        var longDrinkAsString = sessionMap["longDrink"].toString()
+        var ciderAsString = sessionMap["cider"].toString()
+        var wineGlassAsString = sessionMap["wineGlass"].toString()
+        var shotAsString = sessionMap["shot"].toString()
         var title = sessionMap["title"].toString()
 
         // Make Int values be int
         var newId = (idAsString.toDouble()).toInt()
         var largeBeer = (largeBeerAsString.toDouble()).toInt()
         var smallBeer = (smallBeerAsString.toDouble()).toInt()
+        var longDrink = (longDrinkAsString.toDouble().toInt())
+        var cider = (ciderAsString.toDouble().toInt())
+        var wineGlass = (wineGlassAsString.toDouble().toInt())
+        var shot = (shotAsString.toDouble().toInt())
+
         // Add data to session which will be returned
-        var session = sessions(newId, title, sessionLength, curtime, smallBeer, largeBeer)
+        var session = sessions(
+            newId, title, sessionLength, curtime, smallBeer, largeBeer,
+            longDrink, cider, wineGlass, shot
+        )
 
         return session // returns session for use
     }
