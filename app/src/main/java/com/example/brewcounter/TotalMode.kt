@@ -58,49 +58,49 @@ class TotalMode : AppCompatActivity() {
 
         iBtnSubtractLd.setOnClickListener{
             longDrink--
-            tvSbAmount.setText("" + longDrink)
+            tvLdAmount.setText("" + longDrink)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
         iBtnAddLd.setOnClickListener{
             longDrink++
-            tvSbAmount.setText("" + longDrink)
+            tvLdAmount.setText("" + longDrink)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractC.setOnClickListener{
+        iBtnSubtractCider.setOnClickListener{
             cider--
-            tvSbAmount.setText("" + cider)
+            tvCiderAmount.setText("" + cider)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnAddC.setOnClickListener{
+        iBtnAddCider.setOnClickListener{
             cider++
-            tvSbAmount.setText("" + cider)
+            tvCiderAmount.setText("" + cider)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractWg.setOnClickListener{
+        iBtnSubtractWG.setOnClickListener{
             wineGlass--
-            tvSbAmount.setText("" + wineGlass)
+            tvWgAmount.setText("" + wineGlass)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnAddWg.setOnClickListener{
+        iBtnAddWG.setOnClickListener{
             wineGlass++
-            tvSbAmount.setText("" + wineGlass)
+            tvWgAmount.setText("" + wineGlass)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractS.setOnClickListener{
+        iBtnSubtractShot.setOnClickListener{
             shot--
-            tvSbAmount.setText("" + shot)
+            tvShotAmount.setText("" + shot)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
-        iBtnSubtractS.setOnClickListener{
+        iBtnAddShot.setOnClickListener{
             shot++
-            tvSbAmount.setText("" + shot)
+            tvShotAmount.setText("" + shot)
             saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
         }
 
@@ -109,6 +109,10 @@ class TotalMode : AppCompatActivity() {
     fun updateList(){
         tvSbAmount.setText("" + smallBeer)
         tvLbAmount.setText("" + largeBeer)
+        tvLdAmount.setText("" + longDrink)
+        tvCiderAmount.setText("" + cider)
+        tvWgAmount.setText("" + wineGlass)
+        tvShotAmount.setText("" + shot)
     }
 
     fun loadDrinks(){
