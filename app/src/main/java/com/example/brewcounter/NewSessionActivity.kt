@@ -53,11 +53,11 @@ class NewSessionActivity : AppCompatActivity() {
         if (checkTimeValidity(sessionLength) == 1) {
             var curtime = checkTime()
             // needs to get last session id to update id num
-            val newSession = sessions(id, titleName, sessionLength.toString(), curtime, 0, 0)
+            val newSession = sessions(id, titleName, sessionLength.toString(), curtime, 0, 0,0,0,0,0)
             // Make list or array of session class to send newSession
             return newSession
         } else {
-            var emptySession = sessions(0, "", "", "", 0, 0)
+            var emptySession = sessions(0, "", "", "", 0, 0,0,0,0,0)
             return emptySession
         }
     }
