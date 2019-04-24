@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
-import com.example.brewcounter.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_total_mode.*
+
 
 class TotalMode : AppCompatActivity() {
 
@@ -26,7 +29,8 @@ class TotalMode : AppCompatActivity() {
     val strLD = "Long Drink            "
     val strC = "Cider                          "
     val strWG = "Wine Glass           "
-    val strS = "Shot                      "
+    val strS = "Shots                      "
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +38,24 @@ class TotalMode : AppCompatActivity() {
 
         updateList()
 
+
+        iBtnAddLb.setOnClickListener{
+           largeBeer++
+
+            // saveDrinks
+
+            // update tvLargebeer
+            tvLbAmount.setText("" + largeBeer)
+
+        }
+
+
         saveDrinks(smallBeer, largeBeer, longDrink, cider, wineGlass, shot)
 
 
     }
 
     fun updateList(){
-
-        loadDrinks()
-
-        listView = findViewById<ListView>(R.id.totalDrinkList)
-
-        val listItems = arrayOf<String>(strSB + smallBeer, strLB + largeBeer, strLD + longDrink, strC + cider, strWG + wineGlass, strS + shot)
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
-        listView.adapter = adapter
 
     }
 
@@ -76,5 +83,13 @@ class TotalMode : AppCompatActivity() {
         editor.putInt("shots", S)
         editor.apply()
     }
+
+    /*
+            listView = findViewById<ListView>(R.id.totalDrinkList)
+        val listItems = arrayOf<String>(strSB + smallBeer,"", strLB + largeBeer,"", strLD + longDrink,"", strC + cider,"", strWG + wineGlass,"", strS + shot)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        listView.adapter = adapter
+     */
 
 }

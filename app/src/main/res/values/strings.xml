@@ -12,6 +12,10 @@
     <string name="beer033">Beer 0.33L </string>
     <string name="beer05">0.5L Beer</string>
 
+    <!-- Buttons -->
+    <string name="button_add">+</string>
+    <string name="button_subtract">-</string>
+
     <!-- Session creation stuff -->
     <string name="new_session">Create new session</string>
     <string name="enter_title">Title: </string>
