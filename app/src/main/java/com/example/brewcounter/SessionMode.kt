@@ -29,6 +29,7 @@ class SessionMode : AppCompatActivity() {
     }
 
     fun loadSessionData(): sessions {
+
         var id = getLatestId() // gets latest id in list
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
         var gson = Gson() // initialize gson for gson.fromJson
