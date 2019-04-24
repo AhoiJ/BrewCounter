@@ -24,13 +24,6 @@ class TotalMode : AppCompatActivity() {
     var wineGlass: Int = 0
     var shot: Int = 0
 
-    val strSB = "Small Beer 0,33L  "
-    val strLB = "Large Beer 0,5L    "
-    val strLD = "Long Drink            "
-    val strC = "Cider                          "
-    val strWG = "Wine Glass           "
-    val strS = "Shots                      "
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
