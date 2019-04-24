@@ -18,27 +18,32 @@ class TotalMode : AppCompatActivity() {
     var smallBeer: Int = 0
     var largeBeer: Int = 0
 
+    val strSB = "Small Beer 0,33L  "
+    val strLB = "Large Beers 0,5L  "
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_total_mode)
 
-        loadDrinks()
+        updateList()
 
-        listView = findViewById<ListView>(R.id.totalDrinkList)
-
-
-
-        val listItems = arrayOf<String>("Small beers 0,3L  " + smallBeer, "Large Beers 0,5L")
-
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
-        listView.adapter = adapter
-        smallBeer++
         saveDrinks(smallBeer, largeBeer)
 
 
     }
 
+    fun updateList(){
+
+        loadDrinks()
+
+        listView = findViewById<ListView>(R.id.totalDrinkList)
+
+        val listItems = arrayOf<String>(strSB + smallBeer, strLB + largeBeer)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        listView.adapter = adapter
+
+    }
 
     fun loadDrinks(){
         val sharPref = getSharedPreferences("DrinksData", Context.MODE_PRIVATE)
