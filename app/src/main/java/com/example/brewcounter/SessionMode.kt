@@ -15,12 +15,21 @@ import java.util.*
 
 class SessionMode : AppCompatActivity() {
 
+    var smallBeer: Int = 0
+    var largeBeer: Int = 0
+    var longDrink: Int = 0
+    var cider: Int = 0
+    var wineGlass: Int = 0
+    var shot: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_mode)
 
         // get newest session from array
         var currentSession = loadSessionData()
+        // Loads values for drinks from "totalList"
+        loadTotalVals()
 
         // used to add sessionLength to sessionStart time
         var sdf = SimpleDateFormat("MM-dd HH:mm:ss")
@@ -39,61 +48,73 @@ class SessionMode : AppCompatActivity() {
 
         iBtnAddSbSes.setOnClickListener {
             currentSession.smallBeer++
+            smallBeer++
             setDrinks(currentSession)
         }
         iBtnSubtractSbSes.setOnClickListener {
             // subtract small beer
             currentSession.smallBeer--
+            smallBeer--
             setDrinks(currentSession)
         }
         iBtnAddLbSes.setOnClickListener {
             // add large beer
             currentSession.largeBeer++
+            largeBeer++
             setDrinks(currentSession)
         }
         iBtnSubtractLbSes.setOnClickListener {
             // subtract large beer
             currentSession.largeBeer--
+            largeBeer--
             setDrinks(currentSession)
         }
         iBtnAddLdSes.setOnClickListener {
             // add LongDrink
             currentSession.longDrink++
+            longDrink++
             setDrinks(currentSession)
         }
         iBtnSubtractLdSes.setOnClickListener {
             // subtract LongDrink
             currentSession.longDrink--
+            longDrink--
             setDrinks(currentSession)
         }
         iBtnAddCiderSes.setOnClickListener {
             // add cider
             currentSession.cider++
+            cider++
             setDrinks(currentSession)
         }
         iBtnSubtractCiderSes.setOnClickListener {
             // subtract cider
             currentSession.cider--
+            cider--
             setDrinks(currentSession)
         }
         iBtnAddWGSes.setOnClickListener {
             // add wineGlass
             currentSession.wineGlass++
+            wineGlass++
             setDrinks(currentSession)
         }
         iBtnSubtractWGSes.setOnClickListener {
             // subtract wineGlass
             currentSession.wineGlass--
+            wineGlass--
             setDrinks(currentSession)
         }
         iBtnAddShotSes.setOnClickListener {
             // add shot
             currentSession.shot++
+            shot++
             setDrinks(currentSession)
         }
         iBtnSubtractShotSes.setOnClickListener {
             // subtract shot
-            currentSession.wineGlass--
+            currentSession.shot--
+            shot--
             setDrinks(currentSession)
         }
 
@@ -123,21 +144,31 @@ class SessionMode : AppCompatActivity() {
 
     }
 
+    // adds drinks added to session into totalMode
     fun saveSessionToTotal(session: sessions) {
 
         val sharPref = getSharedPreferences("DrinksData", 0)
         var editor = sharPref.edit()
-
-        // make this be an addition not a replacement
-        /*
-        editor.putInt("smallBeers", session.smallBeer)
-        editor.putInt("largeBeers", session.largeBeer)
-        editor.putInt("longDrinks", session.longDrink)
-        editor.putInt("ciders", session.cider)
-        editor.putInt("wineGlasses", session.wineGlass)
-        editor.putInt("shots", session.shot)
+        editor.putInt("smallBeers", smallBeer)
+        editor.putInt("largeBeers", largeBeer)
+        editor.putInt("longDrinks", longDrink)
+        editor.putInt("ciders", cider)
+        editor.putInt("wineGlasses", wineGlass)
+        editor.putInt("shots", shot)
         editor.apply()
-        */
+
+    }
+
+    // Loads totalMode values so session values can be added to them
+    fun loadTotalVals() {
+        val sharPref = getSharedPreferences("DrinksData", Context.MODE_PRIVATE)
+
+        smallBeer = sharPref.getInt("smallBeers", smallBeer)
+        largeBeer = sharPref.getInt("largeBeers", largeBeer)
+        longDrink = sharPref.getInt("longDrinks", longDrink)
+        cider = sharPref.getInt("ciders", cider)
+        wineGlass = sharPref.getInt("wineGlasses", wineGlass)
+        shot = sharPref.getInt("shots", shot)
     }
 
     fun loadSessionData(): sessions {
