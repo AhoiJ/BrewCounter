@@ -10,6 +10,7 @@
     <string name="total_statistics">Total Statistics</string>
     <string name="session_history">Session History</string>
     <string name="set_prices">Set Drink Prices</string>
+    <string name="session_total_cost">Session Cost</string>
 
     <!-- Drinks -->
     <string name="beer033">Beer 0.33L</string>
