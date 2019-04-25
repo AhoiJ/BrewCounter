@@ -26,6 +26,7 @@
     <!-- Buttons -->
     <string name="button_add">+</string>
     <string name="button_subtract">-</string>
+    <string name="button_dismiss">Dismiss</string>
 
     <!-- Session creation stuff -->
     <string name="new_session">Create new session</string>
