@@ -77,8 +77,9 @@ class SessionHistoryActivity : AppCompatActivity() {
         return sessionMap
     }
 
-
+// Gets a session id based on its position in list where clicked
     fun displaySessionInfo(pos: Int): sessions {
+
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
         var gson = Gson() // initialize gson for gson.fromJson
         var json = sharedPreference.getString(pos.toString(), null) // get data of latest session
@@ -114,7 +115,7 @@ class SessionHistoryActivity : AppCompatActivity() {
         return session
     }
 
-
+// gets latest id used in session
     fun getLatestId(): Int {
         var id: Int = 1
         var storeLatest: Int = 0
@@ -128,7 +129,7 @@ class SessionHistoryActivity : AppCompatActivity() {
         }
         return storeLatest
     }
-
+/*
     fun saveSessionToArray(newSession: sessions) {
         val sharedPreference = getSharedPreferences("SessionData", 0)
         var editor = sharedPreference.edit()
@@ -137,4 +138,5 @@ class SessionHistoryActivity : AppCompatActivity() {
         editor.putString(newSession.id.toString(), json)
         editor.apply()
     }
+    */
 }

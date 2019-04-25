@@ -53,9 +53,11 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractSbSes.setOnClickListener {
             // subtract small beer
-            currentSession.smallBeer--
-            smallBeer--
-            setDrinks(currentSession)
+            if (currentSession.smallBeer > 0) {
+                currentSession.smallBeer--
+                smallBeer--
+                setDrinks(currentSession)
+            }
         }
         iBtnAddLbSes.setOnClickListener {
             // add large beer
@@ -65,9 +67,11 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractLbSes.setOnClickListener {
             // subtract large beer
-            currentSession.largeBeer--
-            largeBeer--
-            setDrinks(currentSession)
+            if (currentSession.largeBeer > 0) {
+                currentSession.largeBeer--
+                largeBeer--
+                setDrinks(currentSession)
+            }
         }
         iBtnAddLdSes.setOnClickListener {
             // add LongDrink
@@ -77,9 +81,11 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractLdSes.setOnClickListener {
             // subtract LongDrink
-            currentSession.longDrink--
-            longDrink--
-            setDrinks(currentSession)
+            if (currentSession.longDrink > 0) {
+                currentSession.longDrink--
+                longDrink--
+                setDrinks(currentSession)
+            }
         }
         iBtnAddCiderSes.setOnClickListener {
             // add cider
@@ -89,9 +95,11 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractCiderSes.setOnClickListener {
             // subtract cider
-            currentSession.cider--
-            cider--
-            setDrinks(currentSession)
+            if (currentSession.cider > 0) {
+                currentSession.cider--
+                cider--
+                setDrinks(currentSession)
+            }
         }
         iBtnAddWGSes.setOnClickListener {
             // add wineGlass
@@ -101,9 +109,11 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractWGSes.setOnClickListener {
             // subtract wineGlass
-            currentSession.wineGlass--
-            wineGlass--
-            setDrinks(currentSession)
+            if (currentSession.wineGlass > 0) {
+                currentSession.wineGlass--
+                wineGlass--
+                setDrinks(currentSession)
+            }
         }
         iBtnAddShotSes.setOnClickListener {
             // add shot
@@ -113,13 +123,15 @@ class SessionMode : AppCompatActivity() {
         }
         iBtnSubtractShotSes.setOnClickListener {
             // subtract shot
-            currentSession.shot--
-            shot--
-            setDrinks(currentSession)
+            if (currentSession.shot > 0) {
+                currentSession.shot--
+                shot--
+                setDrinks(currentSession)
+            }
         }
 
     }
-
+    // sets drink values to textViews
     fun setDrinks(session: sessions) {
 
         tvSbAmountSes.setText("" + session.smallBeer)
@@ -129,6 +141,7 @@ class SessionMode : AppCompatActivity() {
         tvWgAmountSes.setText("" + session.wineGlass)
         tvShotAmountSes.setText("" + session.shot)
 
+        // saves session drinks and updates total drinks
         saveSession(session)
         saveSessionToTotal(session)
     }
