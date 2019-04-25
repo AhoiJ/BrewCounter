@@ -62,7 +62,6 @@ class NewSessionActivity : AppCompatActivity() {
         }
     }
 
-
     // Checks what id´s are in use to get a new one
     fun getNewId(): Int {
         var id: Int = 1

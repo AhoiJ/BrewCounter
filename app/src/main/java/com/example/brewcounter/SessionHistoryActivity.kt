@@ -21,40 +21,33 @@ class SessionHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_history)
 
-        /*
-        Thread(Runnable {
-            this@SessionHistoryActivity.runOnUiThread(java.lang.Runnable {
-
-            })
-        }).start()
-*/
-        // gets all sessions to map (? Not yet tested 25.4)
-        var sessionListMap = getSessions()
-
         var counter = getLatestId()
-
-        val listSessions = arrayOfNulls<String>(counter.toInt())
-        val listSessionIds = arrayOfNulls<Int>(counter.toInt())
+        val listSessions = arrayOfNulls<String>(counter)
+        val listSessionIds = arrayOfNulls<Int>(counter)
 
         for (i in 0 until counter) {
-            var id = sessionListMap["id"].toString()
+            var sessionList = getSessions(i + 1)
+            var id = sessionList["id"].toString()
             listSessionIds[i] = id.toDouble().toInt()
-            listSessions[i] = sessionListMap["title"].toString()
+            listSessions[i] = sessionList["title"].toString()
         }
+
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listSessions)
         sessionView.adapter = adapter
 
+        // opens correct session and displays data in popup window
         sessionView.setOnItemClickListener { parent, view, position, id ->
+
             var id = listSessionIds[position]!!.toInt()
             var dispSession = displaySessionInfo(id)
 
+            // Initialize popup window
             val popup = PopupWindow(this)
             val view = layoutInflater.inflate(R.layout.session_info_popup_layout, null)
             popup.contentView = view
-
             popup.showAtLocation(sessionView, Gravity.CENTER, 0, 0)
-            // sets textviews in popup to display beer values
 
+            // sets textviews in popup to display beer values
             view.tvTitleShow.setText("" + dispSession.title)
             view.tvSbShowAmount.setText("" + dispSession.smallBeer)
             view.tvLbShowAmount.setText("" + dispSession.largeBeer)
@@ -63,34 +56,27 @@ class SessionHistoryActivity : AppCompatActivity() {
             view.tvWgShowAmount.setText("" + dispSession.wineGlass)
             view.tvShotsShowAmount.setText("" + dispSession.shot)
 
+            // onClickListener to close popup windwo
             val dismissButton = view.findViewById<Button>(R.id.mBtnDismiss)
-
             dismissButton.setOnClickListener {
                 popup.dismiss()
             }
-
-            //Toast.makeText(this, listSessions[position], Toast.LENGTH_LONG).show()
         }
-
 
     }
 
 
-    fun getSessions(): Map<String, Any> {
-        var id = getLatestId() // gets latest id in list
+    fun getSessions(count: Int): Map<String, Any> {
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
         var gson = Gson() // initialize gson for gson.fromJson
-        var json = sharedPreference.getString(id.toString(), null) // get data of latest session
-        var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
-        id--
-        // pushing all sessions to map at the same time may not work !!!
-        while (id != 0) {
-            json = sharedPreference.getString(id.toString(), null) // get data of latest session
-            sessionMap = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
-            id--
-        }
+        // array to hold all sessions
+
+            var json = sharedPreference.getString(count.toString(), null) // get data of latest session
+            var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
+
         return sessionMap
     }
+
 
     fun displaySessionInfo(pos: Int): sessions {
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
@@ -128,46 +114,7 @@ class SessionHistoryActivity : AppCompatActivity() {
         return session
     }
 
-    /*
-        fun loadSessionData(): sessions {
 
-            var id = getLatestId() // gets latest id in list
-            val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
-            var gson = Gson() // initialize gson for gson.fromJson
-            var json = sharedPreference.getString(id.toString(), null) // get data of latest session
-
-            // Maps sessions so data can be accessed
-            var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
-            // Gets data by key from map
-            var curtime = sessionMap["curTime"].toString()
-            var idAsString = sessionMap["id"].toString()
-            var largeBeerAsString = sessionMap["largeBeer"].toString()
-            var sessionLength = sessionMap["sessionLength"].toString()
-            var smallBeerAsString = sessionMap["smallBeer"].toString()
-            var longDrinkAsString = sessionMap["longDrink"].toString()
-            var ciderAsString = sessionMap["cider"].toString()
-            var wineGlassAsString = sessionMap["wineGlass"].toString()
-            var shotAsString = sessionMap["shot"].toString()
-            var title = sessionMap["title"].toString()
-
-            // Make Int values be int
-            var newId = (idAsString.toDouble()).toInt()
-            var largeBeer = (largeBeerAsString.toDouble()).toInt()
-            var smallBeer = (smallBeerAsString.toDouble()).toInt()
-            var longDrink = (longDrinkAsString.toDouble().toInt())
-            var cider = (ciderAsString.toDouble().toInt())
-            var wineGlass = (wineGlassAsString.toDouble().toInt())
-            var shot = (shotAsString.toDouble().toInt())
-
-            // Add data to session which will be returned
-            var session = sessions(
-                newId, title, sessionLength, curtime, smallBeer, largeBeer,
-                longDrink, cider, wineGlass, shot
-            )
-
-            return session // returns session for use
-        }
-    */
     fun getLatestId(): Int {
         var id: Int = 1
         var storeLatest: Int = 0
@@ -182,4 +129,12 @@ class SessionHistoryActivity : AppCompatActivity() {
         return storeLatest
     }
 
+    fun saveSessionToArray(newSession: sessions) {
+        val sharedPreference = getSharedPreferences("SessionData", 0)
+        var editor = sharedPreference.edit()
+        var gson = Gson()
+        var json = gson.toJson(newSession)
+        editor.putString(newSession.id.toString(), json)
+        editor.apply()
+    }
 }
