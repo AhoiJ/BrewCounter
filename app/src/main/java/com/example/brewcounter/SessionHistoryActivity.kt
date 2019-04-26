@@ -41,6 +41,10 @@ class SessionHistoryActivity : AppCompatActivity() {
             var id = listSessionIds[position]!!.toInt()
             var dispSession = displaySessionInfo(id)
 
+            // get total cost of session
+
+            var cost = sessionCost(dispSession)
+            val dispCost = cost.toString() + "€"
             // Initialize popup window
             val popup = PopupWindow(this)
             val view = layoutInflater.inflate(R.layout.session_info_popup_layout, null)
@@ -55,6 +59,7 @@ class SessionHistoryActivity : AppCompatActivity() {
             view.tvCiderShowAmount.setText("" + dispSession.cider)
             view.tvWgShowAmount.setText("" + dispSession.wineGlass)
             view.tvShotsShowAmount.setText("" + dispSession.shot)
+            view.tvCostShowAmount.setText("" + dispCost)
 
             // onClickListener to close popup windwo
             val dismissButton = view.findViewById<Button>(R.id.mBtnDismiss)
@@ -65,6 +70,23 @@ class SessionHistoryActivity : AppCompatActivity() {
 
     }
 
+    fun sessionCost(sessionInfo: sessions): Double{
+        var cost: Double
+        var sBeerCost : Double = 0.0
+        var lBeerCost: Double = 0.0
+        var lDrinkCost: Double = 0.0
+        var ciderCost: Double = 0.0
+        var wGlassCost: Double = 0.0
+        var shotCost: Double = 0.0
+
+        // Load user made costs here when that is implemented
+        // and make --Cost variables be that amount
+
+        cost = (sBeerCost * sessionInfo.smallBeer) + (lBeerCost * sessionInfo.largeBeer) + (lDrinkCost * sessionInfo.longDrink)
+        + (ciderCost * sessionInfo.cider) + (wGlassCost * sessionInfo.wineGlass) + (shotCost * sessionInfo.shot)
+
+        return cost
+    }
 
     fun getSessions(count: Int): Map<String, Any> {
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
