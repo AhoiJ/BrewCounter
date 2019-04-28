@@ -14,74 +14,46 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        var sBPrice:Int = 0
-        var lBPrice:Int = 0
-        var lDPrice:Int = 0
-        var CiderPrice:Int = 0
-        var wGPrice:Int = 0
-        var shotsPrice:Int = 0
-        var sBInput:EditText = findViewById<EditText>(R.id.tvSbPrice)
-        var lBInput:EditText = findViewById<EditText>(R.id.tvLbPrice)
-        var lDInput:EditText = findViewById<EditText>(R.id.tvLdPrice)
-        var CiderInput:EditText = findViewById<EditText>(R.id.tvCiderPrice)
-        var wGImput:EditText
-        var shotsInput:EditText = findViewById<EditText>(R.id.tvShotPrice)
-        var submitButton: Button = findViewById<Button>(R.id.BtnSubmitDrinks)
+        var sBPrice:String = ""
+        var lBPrice:String = ""
+        var lDPrice:String = ""
+        var ciderPrice:String = ""
+        var wGPrice:String = ""
+        var shotsPrice:String = ""
+
 
         val prices = getSharedPreferences("prices", 0)
-        sBPrice = prices.getInt("smallBeer", sBPrice)
-        lBPrice = prices.getInt("largeBeer", lBPrice)
-        lDPrice = prices.getInt("longDrink", lDPrice)
-        CiderPrice = prices.getInt("Cider", CiderPrice)
-        wGPrice = prices.getInt("wineGlass", wGPrice)
-        shotsPrice = prices.getInt("shots", shotsPrice)
+        sBPrice = prices.getString("smallBeer", sBPrice)
+        lBPrice = prices.getString("largeBeer", lBPrice)
+        lDPrice = prices.getString("longDrink", lDPrice)
+        ciderPrice = prices.getString("cider", ciderPrice)
+        wGPrice = prices.getString("wineGlass", wGPrice)
+        shotsPrice = prices.getString("shots", shotsPrice)
 
 
-        submitButton.setOnClickListener {
-            sBPrice = sBInput.getText().toString()
-            lBPrice = lBInput.getText().toString()
-            lDPrice = lDInput.getText().toString()
-            CiderPrice = CiderInput.getText().toString()
-            shotsPrice = shotsInput.getText().toString()
+        BtnSubmitDrinks.setOnClickListener {
+            sBPrice = tvSbPrice.getText().toString()
+            lBPrice = tvLbPrice.getText().toString()
+            lDPrice = tvLdPrice.getText().toString()
+            ciderPrice = tvCiderPrice.getText().toString()
+            wGPrice = tvWgPrice.getText().toString()
+            shotsPrice = tvShotPrice.getText().toString()
+
             val prices = getSharedPreferences("prices", 0)
             val editor = prices.edit()
             editor.putString("smallBeer", sBPrice)
-            editor.putInt("largeBeer", lBPrice)
-            editor.putInt("longDrink", lDPrice)
-            editor.putInt("smallCider", CiderPrice)
-            editor.putInt("shots", shotsPrice)
+            editor.putString("largeBeer", lBPrice)
+            editor.putString("longDrink", lDPrice)
+            editor.putString("cider", ciderPrice)
+            editor.putString("shots", shotsPrice)
             editor.commit()
-            displaySmallBeer(sBPrice)
-            displayLargeBeer(largeBeerPrice)
-            displayLongDrink(longDrinkPrice)
-            displaySmallCider(smallCiderPrice)
-            displayShots(shotsPrice)
+
+            displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
         }
     }
-    fun displaySmallBeer(number:String) {
-        val displayInteger = findViewById(
-            R.id.tvSbPrice)
-        displayInteger.setText("" + number + " €")
+    fun displayDrinks(smallBeer: String, largeBeer: String, longDrink: String, cider: String, wineGlass: String, shot: String){
+
+        tvSbTotalPrice.setText("" + smallBeer + "€")
     }
-    fun displayLargeBeer(number:String) {
-        val displayInteger = findViewById(
-            R.id.costOfLbeer)
-        displayInteger.setText("" + number + " €")
-    }
-    fun displayLongDrink(number:String) {
-        val displayInteger = findViewById(
-            R.id.costOfLdrink)
-        displayInteger.setText("" + number + " €")
-    }
-    fun displaySmallCider(number:String) {
-        val displayInteger = findViewById(
-            R.id.costOfSciders)
-        displayInteger.setText("" + number + " €")
-    }
-    fun displayShots(number:String) {
-        val displayInteger = findViewById(
-            R.id.costOfShots)
-        displayInteger.setText("" + number + " €")
-    }
-    }
+
 }

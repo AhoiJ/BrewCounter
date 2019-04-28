@@ -67,12 +67,11 @@ class SessionHistoryActivity : AppCompatActivity() {
                 popup.dismiss()
             }
         }
-
     }
 
-    fun sessionCost(sessionInfo: sessions): Double{
+    fun sessionCost(sessionInfo: sessions): Double {
         var cost: Double
-        var sBeerCost : Double = 0.0
+        var sBeerCost: Double = 0.0
         var lBeerCost: Double = 0.0
         var lDrinkCost: Double = 0.0
         var ciderCost: Double = 0.0
@@ -82,8 +81,9 @@ class SessionHistoryActivity : AppCompatActivity() {
         // Load user made costs here when that is implemented
         // and make --Cost variables be that amount
 
-        cost = (sBeerCost * sessionInfo.smallBeer) + (lBeerCost * sessionInfo.largeBeer) + (lDrinkCost * sessionInfo.longDrink)
-        + (ciderCost * sessionInfo.cider) + (wGlassCost * sessionInfo.wineGlass) + (shotCost * sessionInfo.shot)
+        cost =
+            (sBeerCost * sessionInfo.smallBeer) + (lBeerCost * sessionInfo.largeBeer) + (lDrinkCost * sessionInfo.longDrink)
+        +(ciderCost * sessionInfo.cider) + (wGlassCost * sessionInfo.wineGlass) + (shotCost * sessionInfo.shot)
 
         return cost
     }
@@ -93,13 +93,13 @@ class SessionHistoryActivity : AppCompatActivity() {
         var gson = Gson() // initialize gson for gson.fromJson
         // array to hold all sessions
 
-            var json = sharedPreference.getString(count.toString(), null) // get data of latest session
-            var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
+        var json = sharedPreference.getString(count.toString(), null) // get data of latest session
+        var sessionMap: Map<String, Any> = gson.fromJson(json, object : TypeToken<Map<String, Any>>() {}.type)
 
         return sessionMap
     }
 
-// Gets a session id based on its position in list where clicked
+    // Gets a session id based on its position in list where clicked
     fun displaySessionInfo(pos: Int): sessions {
 
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)
@@ -137,7 +137,7 @@ class SessionHistoryActivity : AppCompatActivity() {
         return session
     }
 
-// gets latest id used in session
+    // gets latest id used in session
     fun getLatestId(): Int {
         var id: Int = 1
         var storeLatest: Int = 0
