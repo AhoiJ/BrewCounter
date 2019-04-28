@@ -67,12 +67,24 @@ class SettingsActivity : AppCompatActivity() {
     }
     fun displayDrinks(smallBeer: String, largeBeer: String, longDrink: String, cider: String, wineGlass: String, shot: String){
 
-        tvSbTotalPrice.setText("" + smallBeer + "€")
-        tvLbTotalPrice.setText("" + largeBeer + "€")
-        tvLdTotalPrice.setText("" + longDrink + "€")
-        tvCiderTotalPrice.setText("" + cider + "€")
-        tvWgTotalPrice.setText("" + wineGlass + "€")
-        tvShotTotalPrice.setText("" + shot + "€")
+        if (smallBeer != "") {
+            tvSbTotalPrice.setText("" + smallBeer + "€")
+        }
+        if (largeBeer != "") {
+            tvLbTotalPrice.setText("" + largeBeer + "€")
+        }
+        if (longDrink != "") {
+            tvLdTotalPrice.setText("" + longDrink + "€")
+        }
+        if (cider != "") {
+            tvCiderTotalPrice.setText("" + cider + "€")
+        }
+        if (wineGlass != "") {
+            tvWgTotalPrice.setText("" + wineGlass + "€")
+        }
+        if (shot != "") {
+            tvShotTotalPrice.setText("" + shot + "€")
+        }
     }
 
 }

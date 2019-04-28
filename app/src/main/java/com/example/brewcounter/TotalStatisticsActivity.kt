@@ -26,6 +26,20 @@ class TotalStatisticsActivity : AppCompatActivity() {
     var wineGlass: Int = 0
     var shot: Int = 0
 
+    var sBPrice:String = ""
+    var lBPrice:String = ""
+    var lDPrice:String = ""
+    var ciderPrice:String = ""
+    var wGPrice:String = ""
+    var shotsPrice:String = ""
+
+    var sBTotalPrice:Double = 0.0
+    var lBTotalPrice:Double = 0.0
+    var lDTotalPrice:Double = 0.0
+    var ciderTotalPrice:Double = 0.0
+    var wGTotalPrice:Double = 0.0
+    var shotsTotalPrice:Double = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_total_statistics)
@@ -57,12 +71,7 @@ class TotalStatisticsActivity : AppCompatActivity() {
         updateList()
     }
 
-    var sBPrice:String = ""
-    var lBPrice:String = ""
-    var lDPrice:String = ""
-    var ciderPrice:String = ""
-    var wGPrice:String = ""
-    var shotsPrice:String = ""
+
 
     fun loadPrices() {
         val prices = getSharedPreferences("prices", Context.MODE_PRIVATE)
@@ -75,21 +84,46 @@ class TotalStatisticsActivity : AppCompatActivity() {
         shotsPrice = prices.getString("shots", shotsPrice)
     }
 
-    var sBTotalPrice:Double = 0.0
-    var lBTotalPrice:Double = 0.0
-    var lDTotalPrice:Double = 0.0
-    var ciderTotalPrice:Double = 0.0
-    var wGTotalPrice:Double = 0.0
-    var shotsTotalPrice:Double = 0.0
 
     fun priceCalculator() {
 
-        sBTotalPrice = (sBPrice.toDouble() * smallBeer)
-        lBTotalPrice = (lBPrice.toDouble() * largeBeer)
-        lDTotalPrice = (lDPrice.toDouble() * longDrink)
-        ciderTotalPrice = (ciderPrice.toDouble() * cider)
-        wGTotalPrice = (wGPrice.toDouble() * wineGlass)
-        shotsTotalPrice = (shotsPrice.toDouble() * shot)
+        fun checkIfEmpty(checkThis: String): Boolean {
+
+            if (checkThis == "") {
+                return true
+            } else
+                return false
+        }
+
+        if(!checkIfEmpty(sBPrice)) {
+            sBTotalPrice = sBPrice.toDouble() * smallBeer.toDouble()
+        }else
+            sBTotalPrice = 0.0
+
+        if(!checkIfEmpty(lBPrice)) {
+            lBTotalPrice = lBPrice.toDouble() * largeBeer
+        }else
+            lBTotalPrice = 0.0
+
+        if(!checkIfEmpty(lDPrice)) {
+            lDTotalPrice = lDPrice.toDouble() * longDrink
+        }else
+            lDTotalPrice = 0.0
+
+        if(!checkIfEmpty(ciderPrice)) {
+            ciderTotalPrice = ciderPrice.toDouble() * cider
+        }else
+            ciderTotalPrice = 0.0
+
+        if(!checkIfEmpty(wGPrice)) {
+            wGTotalPrice = wGPrice.toDouble() * wineGlass
+        }else
+            wGTotalPrice = 0.0
+
+        if(!checkIfEmpty(shotsPrice)) {
+            shotsTotalPrice = shotsPrice.toDouble() * shot
+        }else
+            shotsTotalPrice = 0.0
     }
 
     fun updateTotals() {
