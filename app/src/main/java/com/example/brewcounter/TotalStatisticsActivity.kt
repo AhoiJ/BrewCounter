@@ -4,7 +4,16 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_settings.tvSbTotalPrice
 import kotlinx.android.synthetic.main.activity_total_mode.*
+import kotlinx.android.synthetic.main.activity_total_mode.tvCiderAmount
+import kotlinx.android.synthetic.main.activity_total_mode.tvLbAmount
+import kotlinx.android.synthetic.main.activity_total_mode.tvLdAmount
+import kotlinx.android.synthetic.main.activity_total_mode.tvSbAmount
+import kotlinx.android.synthetic.main.activity_total_mode.tvShotAmount
+import kotlinx.android.synthetic.main.activity_total_mode.tvWgAmount
+import kotlinx.android.synthetic.main.activity_total_statistics.*
 
 class TotalStatisticsActivity : AppCompatActivity() {
 
@@ -22,6 +31,7 @@ class TotalStatisticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_total_statistics)
 
         loadDrinks()
+        priceCalculator()
     }
 
     fun updateList() {
@@ -43,5 +53,18 @@ class TotalStatisticsActivity : AppCompatActivity() {
         wineGlass = sharPref.getInt("wineGlasses", wineGlass)
         shot = sharPref.getInt("shots", shot)
         updateList()
+    }
+
+    fun loadPrices() {
+        val sharedPrice = getSharedPreferences("prices", Context.MODE_PRIVATE)
+        // variables need to be declared above override
+        sBPrice = prices.getString("smallBeer", sBPrice)
+        lBPrice = prices.getString("largeBeer", lBPrice)
+        lDPrice = prices.getString("longDrink", lDPrice)
+        ciderPrice = prices.getString("cider", ciderPrice)
+        wGPrice = prices.getString("wineGlass", wGPrice)
+        shotsPrice = prices.getString("shots", shotsPrice)
+
+
     }
 }

@@ -30,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         wGPrice = prices.getString("wineGlass", wGPrice)
         shotsPrice = prices.getString("shots", shotsPrice)
 
+        displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
 
         BtnSubmitDrinks.setOnClickListener {
             sBPrice = tvSbPrice.getText().toString()
@@ -39,14 +40,27 @@ class SettingsActivity : AppCompatActivity() {
             wGPrice = tvWgPrice.getText().toString()
             shotsPrice = tvShotPrice.getText().toString()
 
+
             val prices = getSharedPreferences("prices", 0)
             val editor = prices.edit()
-            editor.putString("smallBeer", sBPrice)
-            editor.putString("largeBeer", lBPrice)
-            editor.putString("longDrink", lDPrice)
-            editor.putString("cider", ciderPrice)
-            editor.putString("shots", shotsPrice)
-            editor.commit()
+            if(sBPrice != "") {
+                editor.putString("smallBeer", sBPrice)
+            }
+            if(lBPrice != "") {
+                editor.putString("largeBeer", lBPrice)
+            }
+            if(lDPrice != ""){
+                editor.putString("longDrink", lDPrice)
+            }
+            if (ciderPrice != ""){
+                editor.putString("cider", ciderPrice)
+            }
+            if (wGPrice != ""){
+                editor.putString("wineGlass", wGPrice)
+            }
+            if(shotsPrice != ""){
+                editor.putString("shots", shotsPrice)
+            }
 
             displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
         }
@@ -54,6 +68,11 @@ class SettingsActivity : AppCompatActivity() {
     fun displayDrinks(smallBeer: String, largeBeer: String, longDrink: String, cider: String, wineGlass: String, shot: String){
 
         tvSbTotalPrice.setText("" + smallBeer + "€")
+        tvLbTotalPrice.setText("" + largeBeer + "€")
+        tvLdTotalPrice.setText("" + longDrink + "€")
+        tvCiderTotalPrice.setText("" + cider + "€")
+        tvWgTotalPrice.setText("" + wineGlass + "€")
+        tvShotTotalPrice.setText("" + shot + "€")
     }
 
 }
