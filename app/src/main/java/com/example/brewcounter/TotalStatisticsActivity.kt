@@ -127,12 +127,12 @@ class TotalStatisticsActivity : AppCompatActivity() {
 
     fun updateTotals() {
 
-        tvSbTotal.setText("" +  "%.2f".format(sBTotalPrice).toDouble()  + "€")
-        tvLbTotal.setText("" + "%.2f".format(lBTotalPrice).toDouble() + "€")
-        tvLdTotal.setText("" +   "%.2f".format(lDTotalPrice).toDouble()  + "€")
-        tvCiderTotal.setText("" +   "%.2f".format(ciderTotalPrice).toDouble()  + "€")
-        tvWgTotal.setText("" +   "%.2f".format(wGTotalPrice).toDouble()  + "€")
-        tvShotTotal.setText("" +   "%.2f".format(shotsTotalPrice).toDouble()  + "€")
+        tvSbTotal.setText("" +  "%.2f".format(sBTotalPrice)  + "€")
+        tvLbTotal.setText("" + "%.2f".format(lBTotalPrice) + "€")
+        tvLdTotal.setText("" +   "%.2f".format(lDTotalPrice)  + "€")
+        tvCiderTotal.setText("" +   "%.2f".format(ciderTotalPrice)  + "€")
+        tvWgTotal.setText("" +   "%.2f".format(wGTotalPrice)  + "€")
+        tvShotTotal.setText("" +   "%.2f".format(shotsTotalPrice)  + "€")
     }
 
 }
