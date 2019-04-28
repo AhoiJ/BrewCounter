@@ -31,7 +31,9 @@ class TotalStatisticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_total_statistics)
 
         loadDrinks()
+        loadPrices()
         priceCalculator()
+        updateTotals()
     }
 
     fun updateList() {
@@ -55,16 +57,49 @@ class TotalStatisticsActivity : AppCompatActivity() {
         updateList()
     }
 
+    var sBPrice:String = ""
+    var lBPrice:String = ""
+    var lDPrice:String = ""
+    var ciderPrice:String = ""
+    var wGPrice:String = ""
+    var shotsPrice:String = ""
+
     fun loadPrices() {
-        val sharedPrice = getSharedPreferences("prices", Context.MODE_PRIVATE)
-        // variables need to be declared above override
+        val prices = getSharedPreferences("prices", Context.MODE_PRIVATE)
+
         sBPrice = prices.getString("smallBeer", sBPrice)
         lBPrice = prices.getString("largeBeer", lBPrice)
         lDPrice = prices.getString("longDrink", lDPrice)
         ciderPrice = prices.getString("cider", ciderPrice)
         wGPrice = prices.getString("wineGlass", wGPrice)
         shotsPrice = prices.getString("shots", shotsPrice)
-
-
     }
+
+    var sBTotalPrice:Double = 0.0
+    var lBTotalPrice:Double = 0.0
+    var lDTotalPrice:Double = 0.0
+    var ciderTotalPrice:Double = 0.0
+    var wGTotalPrice:Double = 0.0
+    var shotsTotalPrice:Double = 0.0
+
+    fun priceCalculator() {
+
+        sBTotalPrice = (sBPrice.toDouble() * smallBeer)
+        lBTotalPrice = (lBPrice.toDouble() * largeBeer)
+        lDTotalPrice = (lDPrice.toDouble() * longDrink)
+        ciderTotalPrice = (ciderPrice.toDouble() * cider)
+        wGTotalPrice = (wGPrice.toDouble() * wineGlass)
+        shotsTotalPrice = (shotsPrice.toDouble() * shot)
+    }
+
+    fun updateTotals() {
+
+        tvSbTotal.setText("" + sBTotalPrice + "€")
+        tvLbTotal.setText("" + lBTotalPrice + "€")
+        tvLdTotal.setText("" + lDTotalPrice + "€")
+        tvCiderTotal.setText("" + ciderTotalPrice + "€")
+        tvWgTotal.setText("" + wGTotalPrice + "€")
+        tvShotTotal.setText("" + shotsTotalPrice + "€")
+    }
+
 }
