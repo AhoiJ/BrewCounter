@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_total_mode.tvSbAmount
 import kotlinx.android.synthetic.main.activity_total_mode.tvShotAmount
 import kotlinx.android.synthetic.main.activity_total_mode.tvWgAmount
 import kotlinx.android.synthetic.main.activity_total_statistics.*
+import java.util.*
 
 class TotalStatisticsActivity : AppCompatActivity() {
 
@@ -84,16 +85,16 @@ class TotalStatisticsActivity : AppCompatActivity() {
         shotsPrice = prices.getString("shots", shotsPrice)
     }
 
+    fun checkIfEmpty(checkThis: String): Boolean {
+
+        if (checkThis == "") {
+            return true
+        } else
+            return false
+    }
 
     fun priceCalculator() {
 
-        fun checkIfEmpty(checkThis: String): Boolean {
-
-            if (checkThis == "") {
-                return true
-            } else
-                return false
-        }
 
         if(!checkIfEmpty(sBPrice)) {
             sBTotalPrice = sBPrice.toDouble() * smallBeer.toDouble()
@@ -128,12 +129,12 @@ class TotalStatisticsActivity : AppCompatActivity() {
 
     fun updateTotals() {
 
-        tvSbTotal.setText("" + sBTotalPrice + "€")
-        tvLbTotal.setText("" + lBTotalPrice + "€")
-        tvLdTotal.setText("" + lDTotalPrice + "€")
-        tvCiderTotal.setText("" + ciderTotalPrice + "€")
-        tvWgTotal.setText("" + wGTotalPrice + "€")
-        tvShotTotal.setText("" + shotsTotalPrice + "€")
+        tvSbTotal.setText("" +  "%.2f".format(sBTotalPrice).toDouble()  + "€")
+        tvLbTotal.setText("" + "%.2f".format(lBTotalPrice).toDouble() + "€")
+        tvLdTotal.setText("" +   "%.2f".format(lDTotalPrice).toDouble()  + "€")
+        tvCiderTotal.setText("" +   "%.2f".format(ciderTotalPrice).toDouble()  + "€")
+        tvWgTotal.setText("" +   "%.2f".format(wGTotalPrice).toDouble()  + "€")
+        tvShotTotal.setText("" +   "%.2f".format(shotsTotalPrice).toDouble()  + "€")
     }
 
 }

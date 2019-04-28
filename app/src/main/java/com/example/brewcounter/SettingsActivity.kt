@@ -61,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
             if(shotsPrice != ""){
                 editor.putString("shots", shotsPrice)
             }
-
+            editor.apply()
             displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
         }
     }
