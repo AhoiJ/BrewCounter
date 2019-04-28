@@ -11,7 +11,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLaySBSes" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="80dp" app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="60dp" app:layout_constraintTop_toTopOf="parent">
 
         <TextView
                 android:text="@string/beer033"
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvSmallBeerSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvSbAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractSbSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractSbSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -46,8 +46,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddSbSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddSbSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLayLBSes" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/constLaySBSes">
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/constLaySBSes">
         <TextView
                 android:text="@string/beer05"
                 android:textSize="20sp"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvLargeBeerSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -89,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvLbAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractLbSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractLbSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -104,8 +104,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddLbSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddLbSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLayLDSes" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintTop_toBottomOf="@+id/constLayLBSes" android:layout_marginTop="20dp">
+            app:layout_constraintTop_toBottomOf="@+id/constLayLBSes" android:layout_marginTop="15dp">
 
         <TextView
                 android:text="@string/long_drink"
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvLongDrinkSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -148,8 +148,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvLdAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractLdSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractLdSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -163,8 +163,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddLdSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddLdSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -187,7 +187,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLayCSes" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/constLayLDSes">
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/constLayLDSes">
 
         <TextView
                 android:text="@string/cider"
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvCiderSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -207,8 +207,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvCiderAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractCiderSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractCiderSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -222,8 +222,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddCiderSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddCiderSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -248,7 +248,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLayWGSes" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/constLayCSes">
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/constLayCSes">
 
         <TextView
                 android:text="@string/wine_glass"
@@ -258,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvWineGlassSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -268,8 +268,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvWgAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractWGSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractWGSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -283,8 +283,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddWGSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddWGSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -307,7 +307,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/constLayShotSes" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/constLayWGSes">
+            android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/constLayWGSes">
 
         <TextView
                 android:text="@string/shots"
@@ -317,7 +317,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvShotSes"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp" android:layout_marginStart="15dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.604"/>
         <TextView
                 android:text="@string/default_amount"
@@ -327,8 +327,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvShotAmountSes"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="55dp"
-                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractShotSes" android:layout_marginRight="55dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iBtnSubtractShotSes" android:layout_marginRight="35dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
         <ImageButton
                 android:background="@android:color/transparent"
@@ -342,8 +342,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:src="@drawable/button_subtract_icon"
-                android:layout_marginEnd="40dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddShotSes"
-                android:layout_marginRight="40dp"/>
+                android:layout_marginEnd="20dp" app:layout_constraintEnd_toStartOf="@+id/iBtnAddShotSes"
+                android:layout_marginRight="20dp"/>
         <ImageButton
                 android:background="@android:color/transparent"
                 android:adjustViewBounds="true"
@@ -370,20 +370,20 @@
             android:id="@+id/tvTitle" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" android:layout_marginTop="40dp"/>
+            android:layout_marginRight="8dp" android:layout_marginTop="30dp"/>
     <TextView
             android:text="@string/session_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvSessionStartTime" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="8dp"/>
+            android:layout_marginStart="8dp" android:layout_marginTop="2dp"/>
     <TextView
             android:text="@string/session_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvSessionEndTime"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="12dp" android:layout_marginRight="12dp" android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp" android:layout_marginRight="12dp" android:layout_marginTop="2dp"
             app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
