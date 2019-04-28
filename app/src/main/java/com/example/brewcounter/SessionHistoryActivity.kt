@@ -17,6 +17,13 @@ import kotlinx.android.synthetic.main.session_info_popup_layout.view.*
 
 class SessionHistoryActivity : AppCompatActivity() {
 
+    var sBPrice:String = ""
+    var lBPrice:String = ""
+    var lDPrice:String = ""
+    var ciderPrice:String = ""
+    var wGPrice:String = ""
+    var shotsPrice:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_session_history)
@@ -42,9 +49,8 @@ class SessionHistoryActivity : AppCompatActivity() {
             var dispSession = displaySessionInfo(id)
 
             // get total cost of session
-
             var cost = sessionCost(dispSession)
-            val dispCost = cost.toString() + "€"
+            val dispCost = "%.2f".format(cost) + "€"
             // Initialize popup window
             val popup = PopupWindow(this)
             val view = layoutInflater.inflate(R.layout.session_info_popup_layout, null)
@@ -70,23 +76,31 @@ class SessionHistoryActivity : AppCompatActivity() {
     }
 
     fun sessionCost(sessionInfo: sessions): Double {
+
+        loadPrices()
         var cost: Double
-        var sBeerCost: Double = 0.0
-        var lBeerCost: Double = 0.0
-        var lDrinkCost: Double = 0.0
-        var ciderCost: Double = 0.0
-        var wGlassCost: Double = 0.0
-        var shotCost: Double = 0.0
 
-        // Load user made costs here when that is implemented
-        // and make --Cost variables be that amount
-
-        cost =
-            (sBeerCost * sessionInfo.smallBeer) + (lBeerCost * sessionInfo.largeBeer) + (lDrinkCost * sessionInfo.longDrink)
-        +(ciderCost * sessionInfo.cider) + (wGlassCost * sessionInfo.wineGlass) + (shotCost * sessionInfo.shot)
+        cost = sBPrice.toDouble() * sessionInfo.smallBeer.toDouble()
+        cost += lBPrice.toDouble() * sessionInfo.largeBeer.toDouble()
+        cost += lDPrice.toDouble() * sessionInfo.longDrink.toDouble()
+        cost += ciderPrice.toDouble() * sessionInfo.cider.toDouble()
+        cost += wGPrice.toDouble() * sessionInfo.wineGlass.toDouble()
+        cost += shotsPrice.toDouble() * sessionInfo.shot.toDouble()
 
         return cost
     }
+
+    fun loadPrices(){
+
+        val prices = getSharedPreferences("prices", 0)
+        sBPrice = prices.getString("smallBeer", sBPrice)
+        lBPrice = prices.getString("largeBeer", lBPrice)
+        lDPrice = prices.getString("longDrink", lDPrice)
+        ciderPrice = prices.getString("cider", ciderPrice)
+        wGPrice = prices.getString("wineGlass", wGPrice)
+        shotsPrice = prices.getString("shots", shotsPrice)
+    }
+
 
     fun getSessions(count: Int): Map<String, Any> {
         val sharedPreference = getSharedPreferences("SessionData", Context.MODE_PRIVATE)

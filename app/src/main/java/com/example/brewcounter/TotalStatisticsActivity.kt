@@ -18,8 +18,6 @@ import java.util.*
 
 class TotalStatisticsActivity : AppCompatActivity() {
 
-    private lateinit var listView: ListView
-
     var smallBeer: Int = 0
     var largeBeer: Int = 0
     var longDrink: Int = 0
@@ -45,13 +43,14 @@ class TotalStatisticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_total_statistics)
 
-        loadDrinks()
-        loadPrices()
-        priceCalculator()
-        updateTotals()
+        loadDrinks() // loads values to drink variables
+        loadPrices() // loads values to price variables
+        priceCalculator() // calculates price from variables
+        updateTotals() // updates UI
     }
 
     fun updateList() {
+
         tvSbAmount.setText("" + smallBeer)
         tvLbAmount.setText("" + largeBeer)
         tvLdAmount.setText("" + longDrink)
@@ -61,8 +60,8 @@ class TotalStatisticsActivity : AppCompatActivity() {
     }
 
     fun loadDrinks() {
-        val sharPref = getSharedPreferences("DrinksData", Context.MODE_PRIVATE)
 
+        val sharPref = getSharedPreferences("DrinksData", Context.MODE_PRIVATE)
         smallBeer = sharPref.getInt("smallBeers", smallBeer)
         largeBeer = sharPref.getInt("largeBeers", largeBeer)
         longDrink = sharPref.getInt("longDrinks", longDrink)
@@ -75,8 +74,8 @@ class TotalStatisticsActivity : AppCompatActivity() {
 
 
     fun loadPrices() {
-        val prices = getSharedPreferences("prices", Context.MODE_PRIVATE)
 
+        val prices = getSharedPreferences("prices", Context.MODE_PRIVATE)
         sBPrice = prices.getString("smallBeer", sBPrice)
         lBPrice = prices.getString("largeBeer", lBPrice)
         lDPrice = prices.getString("longDrink", lDPrice)
@@ -85,8 +84,8 @@ class TotalStatisticsActivity : AppCompatActivity() {
         shotsPrice = prices.getString("shots", shotsPrice)
     }
 
+    // Checks if variable is empty
     fun checkIfEmpty(checkThis: String): Boolean {
-
         if (checkThis == "") {
             return true
         } else
@@ -94,7 +93,6 @@ class TotalStatisticsActivity : AppCompatActivity() {
     }
 
     fun priceCalculator() {
-
 
         if(!checkIfEmpty(sBPrice)) {
             sBTotalPrice = sBPrice.toDouble() * smallBeer.toDouble()

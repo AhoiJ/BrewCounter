@@ -10,26 +10,23 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
+
+    // Initialize variables
+    var sBPrice:String = ""
+    var lBPrice:String = ""
+    var lDPrice:String = ""
+    var ciderPrice:String = ""
+    var wGPrice:String = ""
+    var shotsPrice:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        var sBPrice:String = ""
-        var lBPrice:String = ""
-        var lDPrice:String = ""
-        var ciderPrice:String = ""
-        var wGPrice:String = ""
-        var shotsPrice:String = ""
 
-
-        val prices = getSharedPreferences("prices", 0)
-        sBPrice = prices.getString("smallBeer", sBPrice)
-        lBPrice = prices.getString("largeBeer", lBPrice)
-        lDPrice = prices.getString("longDrink", lDPrice)
-        ciderPrice = prices.getString("cider", ciderPrice)
-        wGPrice = prices.getString("wineGlass", wGPrice)
-        shotsPrice = prices.getString("shots", shotsPrice)
-
+        // gets values for variables
+        loadPrices()
+        // Updates UI
         displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
 
         BtnSubmitDrinks.setOnClickListener {
@@ -40,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
             wGPrice = tvWgPrice.getText().toString()
             shotsPrice = tvShotPrice.getText().toString()
 
-
+            // saves variable values
             val prices = getSharedPreferences("prices", 0)
             val editor = prices.edit()
             if(sBPrice != "") {
@@ -62,6 +59,7 @@ class SettingsActivity : AppCompatActivity() {
                 editor.putString("shots", shotsPrice)
             }
             editor.apply()
+            // Updates UI
             displayDrinks(sBPrice, lBPrice, lDPrice, ciderPrice, wGPrice, shotsPrice )
         }
     }
@@ -85,6 +83,16 @@ class SettingsActivity : AppCompatActivity() {
         if (shot != "") {
             tvShotTotalPrice.setText("" + shot + "€")
         }
+    }
+    fun loadPrices(){
+
+        val prices = getSharedPreferences("prices", 0)
+        sBPrice = prices.getString("smallBeer", sBPrice)
+        lBPrice = prices.getString("largeBeer", lBPrice)
+        lDPrice = prices.getString("longDrink", lDPrice)
+        ciderPrice = prices.getString("cider", ciderPrice)
+        wGPrice = prices.getString("wineGlass", wGPrice)
+        shotsPrice = prices.getString("shots", shotsPrice)
     }
 
 }

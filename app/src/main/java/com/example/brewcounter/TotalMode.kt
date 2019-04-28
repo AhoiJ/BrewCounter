@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_total_mode.*
 
 class TotalMode : AppCompatActivity() {
 
-    private lateinit var listView: ListView
 
     var smallBeer: Int = 0
     var largeBeer: Int = 0
