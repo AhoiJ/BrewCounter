@@ -17,12 +17,12 @@ import kotlinx.android.synthetic.main.session_info_popup_layout.view.*
 
 class SessionHistoryActivity : AppCompatActivity() {
 
-    var sBPrice:String = ""
-    var lBPrice:String = ""
-    var lDPrice:String = ""
-    var ciderPrice:String = ""
-    var wGPrice:String = ""
-    var shotsPrice:String = ""
+    var sBPrice: String = ""
+    var lBPrice: String = ""
+    var lDPrice: String = ""
+    var ciderPrice: String = ""
+    var wGPrice: String = ""
+    var shotsPrice: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,19 +78,26 @@ class SessionHistoryActivity : AppCompatActivity() {
     fun sessionCost(sessionInfo: sessions): Double {
 
         loadPrices()
-        var cost: Double
+        var cost: Double = 0.0
 
-        cost = sBPrice.toDouble() * sessionInfo.smallBeer.toDouble()
-        cost += lBPrice.toDouble() * sessionInfo.largeBeer.toDouble()
-        cost += lDPrice.toDouble() * sessionInfo.longDrink.toDouble()
-        cost += ciderPrice.toDouble() * sessionInfo.cider.toDouble()
-        cost += wGPrice.toDouble() * sessionInfo.wineGlass.toDouble()
-        cost += shotsPrice.toDouble() * sessionInfo.shot.toDouble()
+        if (sBPrice != "" )
+            cost = sBPrice.toDouble() * sessionInfo.smallBeer.toDouble()
+        if (lBPrice != "")
+            cost += lBPrice.toDouble() * sessionInfo.largeBeer.toDouble()
+        if (lDPrice != "")
+            cost += lDPrice.toDouble() * sessionInfo.longDrink.toDouble()
+        if (ciderPrice != "")
+            cost += ciderPrice.toDouble() * sessionInfo.cider.toDouble()
+        if (wGPrice != "")
+            cost += wGPrice.toDouble() * sessionInfo.wineGlass.toDouble()
+        if (shotsPrice != "")
+            cost += shotsPrice.toDouble() * sessionInfo.shot.toDouble()
+        
 
         return cost
     }
 
-    fun loadPrices(){
+    fun loadPrices() {
 
         val prices = getSharedPreferences("prices", 0)
         sBPrice = prices.getString("smallBeer", sBPrice)
