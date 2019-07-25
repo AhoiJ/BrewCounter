@@ -10,24 +10,32 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".SessionHistoryActivity">
+        <activity android:name=".SessionHistoryActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TotalStatisticsActivity">
+        <activity android:name=".TotalStatisticsActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".NewSessionActivity">
+        <activity android:name=".NewSessionActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".SettingsActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".StatisticsActivity">
+        <activity android:name=".StatisticsActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TotalMode">
+        <activity android:name=".TotalMode"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SessionMode">
+        <activity android:name=".SessionMode"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
